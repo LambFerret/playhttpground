@@ -1,0 +1,10 @@
+server:
+  port: 10101
+
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  data:
+    mongodb:
+      uri: 
