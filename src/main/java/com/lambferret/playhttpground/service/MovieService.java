@@ -15,4 +15,10 @@ public class MovieService {
     public List<Movie> findAll() {
         return movieRepository.findAll();
     }
+
+    public void save() {
+        Movie movie = new Movie();
+        movie.setTitle("1122");
+        movieRepository.save(movie);
+    }
 }

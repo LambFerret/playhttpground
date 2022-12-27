@@ -21,7 +21,8 @@ public class MovieRestController {
 
     @GetMapping("/")
     public ResponseEntity<List<Movie>> getAllMovies() {
-
-        return new ResponseEntity<>(movieService.findAll(), HttpStatus.OK);
+        List<Movie> movies = movieService.findAll();
+        return new ResponseEntity<>(movies, HttpStatus.OK);
     }
+
 }

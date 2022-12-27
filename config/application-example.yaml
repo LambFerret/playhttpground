@@ -7,4 +7,13 @@ spring:
       INDENT_OUTPUT: true
   data:
     mongodb:
-      uri: 
+      uri: #uri
+
+logging.level:
+  #  root: DEBUG
+  org.springframework:
+    security: DEBUG
+    data:
+      mongodb: DEBUG
+    # session: DEBUG
+    web.server.adapter.HttpWebHandlerAdapter: DEBUG
