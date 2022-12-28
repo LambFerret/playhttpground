@@ -8,6 +8,11 @@ spring:
   data:
     mongodb:
       uri: #uri
+  session:
+    timeout: 600
+    store-type: mongodb
+    mongodb:
+      collection-name: session
 
 logging.level:
   #  root: DEBUG
@@ -17,3 +22,4 @@ logging.level:
       mongodb: DEBUG
     # session: DEBUG
     web.server.adapter.HttpWebHandlerAdapter: DEBUG
+

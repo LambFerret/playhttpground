@@ -19,7 +19,7 @@ public class MovieRestController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = movieService.findAll();
         return new ResponseEntity<>(movies, HttpStatus.OK);
