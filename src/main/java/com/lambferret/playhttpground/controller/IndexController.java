@@ -28,6 +28,8 @@ public class IndexController {
         response.addCookie(cookie);
 
         var a = session.getId();
+
+
         System.out.println("0-0-0-0-0-0-0-");
         System.out.println(a);
 

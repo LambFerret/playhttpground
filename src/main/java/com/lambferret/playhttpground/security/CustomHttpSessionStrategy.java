@@ -28,8 +28,8 @@ public class CustomHttpSessionStrategy extends HeaderHttpSessionIdResolver {
     public void setSessionId(HttpServletRequest request, HttpServletResponse response, String sessionId) {
         System.out.println("IM in session strategy");
         if (ObjectUtils.isEmpty(request.getSession().getAttribute("SPRING_SECURITY_CONTEXT"))) {
-            expireSession(request, response);
-            request.getSession().invalidate();
+//            expireSession(request, response);
+//            request.getSession().invalidate();
             System.out.println("is out?");
         } else {
             Cookie cookie = new Cookie("X-AUTH-TOKEN", sessionId);

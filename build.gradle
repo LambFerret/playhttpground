@@ -35,6 +35,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.session:spring-session-data-mongodb'
 
 	compileOnly 'org.projectlombok:lombok'
 
