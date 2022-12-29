@@ -1,6 +1,6 @@
 package com.lambferret.playhttpground.security;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -9,7 +9,6 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,12 +23,10 @@ public class ServletFilter extends OncePerRequestFilter {
         ContentCachingRequestWrapper httpServletRequest = new ContentCachingRequestWrapper(request);
         ContentCachingResponseWrapper httpServletResponse = new ContentCachingResponseWrapper(response);
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("auth"+auth.getName());
-        Cookie cookie = new Cookie("MonsterFILTER", "MONSTERfilter");
-        httpServletResponse.addCookie(cookie);
+        var requestSession = httpServletRequest.getSession();
+        var sessionId = requestSession.getId();
+        SecurityContext sc = SecurityContextHolder.getContext();
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);
-
     }
 }

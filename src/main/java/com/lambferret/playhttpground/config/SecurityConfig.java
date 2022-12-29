@@ -1,17 +1,15 @@
 package com.lambferret.playhttpground.config;
 
-import com.lambferret.playhttpground.security.CustomHttpSessionStrategy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.session.web.http.HeaderHttpSessionIdResolver;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-@Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     /**
@@ -40,15 +38,6 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().antMatchers("/resources/**");
-    }
-
-    /**
-     * 세션 데이터를 헤더의 X-AUTH-TOKEN 형식으로 반환
-     *
-     */
-    @Bean
-    public HeaderHttpSessionIdResolver httpSessionIdResolver() {
-        return new CustomHttpSessionStrategy("X-Auth-Token");
     }
 
     /**
