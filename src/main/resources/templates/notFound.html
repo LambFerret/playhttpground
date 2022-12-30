@@ -5,12 +5,12 @@
     <title>ERROR</title>
 </head>
 <body>
-    <h1>ERROR OCCURED</h1>
+    <h1>NOT FOUND</h1>
     <h4 th:text="${exception.getMessage()}"></h4>
-    <ul>
-        <th:block th:each="stack : ${exception.getStackTrace()}">
-            <li th:text="${stack}"></li>
-        </th:block>
-    </ul>
+<!--    <ul>-->
+<!--        <th:block th:each="stack : ${exception.getStackTrace()}">-->
+<!--            <li th:text="${stack}"></li>-->
+<!--        </th:block>-->
+<!--    </ul>-->
 </body>
 </html>

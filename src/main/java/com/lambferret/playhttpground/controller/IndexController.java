@@ -1,5 +1,7 @@
 package com.lambferret.playhttpground.controller;
 
+import com.lambferret.playhttpground.exception.ApiErrorException;
+import com.lambferret.playhttpground.exception.StatusCodes;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,14 @@ public class IndexController {
         new SecurityContextLogoutHandler().logout(request, response, authentication);
         request.getSession().invalidate();
         return "redirect:/";
+    }
+
+    @GetMapping("/test")
+    public String raiseExceptionTest() {
+
+        throw new ApiErrorException(StatusCodes.F001);
+
+//        return "redirect:/";
     }
 
 }
