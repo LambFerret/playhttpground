@@ -16,9 +16,10 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public void save() {
-        Movie movie = new Movie();
-        movie.setTitle("1122");
-        movieRepository.save(movie);
+    public List<Movie> findUserMovies(String sessionId) {
+        return movieRepository.findAllbyOwnerSession(sessionId);
+    }
+    public void saveAll(List<Movie> movies) {
+        movieRepository.saveAll(movies);
     }
 }

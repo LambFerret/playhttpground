@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .authorizeHttpRequests((authz) -> authz.anyRequest().permitAll())
-//                .formLogin().disable()
+                .formLogin().disable()
                 .logout().disable()
                 .build();
     }
@@ -48,7 +48,6 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.addExposedHeader("X-Auth-Token");
         configuration.addAllowedOriginPattern("*");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");

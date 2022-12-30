@@ -27,6 +27,6 @@ public class ServletFilter extends OncePerRequestFilter {
         var sessionId = requestSession.getId();
         SecurityContext sc = SecurityContextHolder.getContext();
 
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
+        filterChain.doFilter(request, response);
     }
 }

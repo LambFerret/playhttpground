@@ -1,5 +1,8 @@
 server:
   port: 10101
+  error:
+    whitelabel:
+      enabled: false
 
 spring:
   jackson:
@@ -8,11 +11,6 @@ spring:
   data:
     mongodb:
       uri: #uri
-  session:
-    timeout: 600
-    store-type: mongodb
-    mongodb:
-      collection-name: session
 
 logging.level:
   #  root: DEBUG
