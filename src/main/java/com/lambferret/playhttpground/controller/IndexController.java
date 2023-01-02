@@ -28,10 +28,7 @@ public class IndexController {
 
     @GetMapping("/test")
     public String raiseExceptionTest() {
-
         throw new ApiErrorException(StatusCodes.F001);
-
-//        return "redirect:/";
     }
 
 }

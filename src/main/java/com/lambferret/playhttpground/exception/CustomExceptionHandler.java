@@ -1,13 +1,11 @@
 package com.lambferret.playhttpground.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
-
-import java.util.Arrays;
 
 @ControllerAdvice
 public class CustomExceptionHandler {
@@ -19,22 +17,22 @@ public class CustomExceptionHandler {
 
      *404 메세지는 문법 오류가 아니고 잘못된 URL을 호출할 때 보이므로 다르게 처리해주어야 합니다.*
 
+    해결법 : yaml에서 throwExceptionIfNoHandlerFound: true 추가함
      */
+
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFoundException(NoHandlerFoundException e, Model model) {
-        model.addAttribute("exception", e.getMessage());
-        System.out.println(Arrays.toString(e.getStackTrace()));
-        System.out.println("%^&*%^&*%^&*%404^&*%&^*%^&*%^&*%^&*%^&*%^&*%^&*%^&*");
-
-        return "notFound";
+    public ModelAndView noHandlerException(Exception e) {
+        ModelAndView mav = new ModelAndView("/404");
+        mav.addObject("exception", e);
+        return mav;
     }
 
     @ExceptionHandler(Exception.class)
-    public String globalException(Exception e, Model model) {
-        model.addAttribute("exception", e);
-        System.out.println("%^&*%^&*%^&*%global^&*%&^*%^&*%^&*%^&*%^&*%^&*%^&*%^&*");
-
-        return "error";
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ModelAndView globalException(Exception e) {
+        ModelAndView mav = new ModelAndView("/500");
+        mav.addObject("exception", e);
+        return mav;
     }
 }
