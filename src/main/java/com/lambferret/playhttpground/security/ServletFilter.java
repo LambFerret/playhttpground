@@ -1,8 +1,7 @@
 package com.lambferret.playhttpground.security;
 
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -24,8 +23,10 @@ public class ServletFilter extends OncePerRequestFilter {
         ContentCachingResponseWrapper httpServletResponse = new ContentCachingResponseWrapper(response);
 
         var requestSession = httpServletRequest.getSession();
-        var sessionId = requestSession.getId();
-        SecurityContext sc = SecurityContextHolder.getContext();
+        if (ObjectUtils.isEmpty(requestSession.getAttribute("number"))) {
+            requestSession.setAttribute("number", 0);
+        }
+
 
         filterChain.doFilter(request, response);
     }

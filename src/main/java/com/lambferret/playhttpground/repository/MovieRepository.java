@@ -10,4 +10,13 @@ import java.util.List;
 public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
     @Query("{'ownerSession': ?0}")
     List<Movie> findAllbyOwnerSession(String sessionId);
+
+    @Query(value = "{'ownerSession': ?0}", delete = true)
+    void deleteAllbyOwnerSession(String sessionId);
+
+    @Query(value = "{'ownerSession': ?0, 'title': ?1}", delete = true)
+    void deletebyOwnerSessionAndTitle(String sessionId, String title);
+
+    @Query("{'ownerSession': ?0, 'title':?1}")
+    Movie findAllbyOwnerSessionAndTitle(String sessionId, String title);
 }

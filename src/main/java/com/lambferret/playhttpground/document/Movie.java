@@ -1,5 +1,6 @@
 package com.lambferret.playhttpground.document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import lombok.ToString;
 public class Movie {
     String title;
     String rank;
-    String id;
-    Boolean isFixed;
-    String ownerSession;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) String id;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) Boolean isFixed;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) String ownerSession;
 }

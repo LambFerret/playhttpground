@@ -19,6 +19,17 @@ public class MovieService {
     public List<Movie> findUserMovies(String sessionId) {
         return movieRepository.findAllbyOwnerSession(sessionId);
     }
+
+    public void deleteSessionMovies(String sessionId) {
+        movieRepository.deleteAllbyOwnerSession(sessionId);
+    }
+    public void deleteSessionMovieWithTitle(String sessionId, String title) {
+        movieRepository.deletebyOwnerSessionAndTitle(sessionId, title);
+    }
+
+    public Movie findUserMovieWithTitle(String sessionId, String title) {
+        return movieRepository.findAllbyOwnerSessionAndTitle(sessionId, title);
+    }
     public void saveAll(List<Movie> movies) {
         movieRepository.saveAll(movies);
     }

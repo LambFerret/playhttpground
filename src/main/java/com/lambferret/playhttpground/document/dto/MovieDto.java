@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MoviePostDto {
+public class MovieDto {
     String title;
     String rank;
 }
