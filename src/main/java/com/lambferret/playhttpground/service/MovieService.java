@@ -23,6 +23,11 @@ public class MovieService {
     public void deleteSessionMovies(String sessionId) {
         movieRepository.deleteAllbyOwnerSession(sessionId);
     }
+
+    public void deleteAllMoviesSession( ) {
+        movieRepository.deleteAllSession();
+    }
+
     public void deleteSessionMovieWithTitle(String sessionId, String title) {
         movieRepository.deletebyOwnerSessionAndTitle(sessionId, title);
     }
@@ -32,5 +37,8 @@ public class MovieService {
     }
     public void saveAll(List<Movie> movies) {
         movieRepository.saveAll(movies);
+    }
+    public void save(Movie movie) {
+        movieRepository.save(movie);
     }
 }

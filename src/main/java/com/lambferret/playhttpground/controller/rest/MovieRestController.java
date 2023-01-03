@@ -1,6 +1,5 @@
 package com.lambferret.playhttpground.controller.rest;
 
-import com.lambferret.playhttpground.controller.response.PostResponse;
 import com.lambferret.playhttpground.document.Movie;
 import com.lambferret.playhttpground.document.dto.MovieDto;
 import com.lambferret.playhttpground.exception.ApiErrorException;
@@ -41,6 +40,8 @@ public class MovieRestController {
     public ResponseEntity<List<Movie>> test(
             HttpServletRequest request, HttpServletResponse response
     ) {
+
+
         var session = request.getSession();
         if (Integer.parseInt(session.getAttribute("number").toString()) > 5) {
             throw new ApiErrorException(StatusCodes.F001);
@@ -54,10 +55,9 @@ public class MovieRestController {
     }
 
     @PostMapping()
-    public ResponseEntity<PostResponse> makeNewMovies(
-            @RequestBody List<MovieDto> newMoviesDto, HttpServletRequest request, HttpServletResponse response
+    public ResponseEntity<List<Movie>> makeNewMovies(
+            @ModelAttribute List<MovieDto> newMoviesDto, HttpServletRequest request, HttpServletResponse response
     ) {
-
         var session = request.getSession();
         var totalUsage = sessionUsage(session);
 
@@ -76,13 +76,37 @@ public class MovieRestController {
 
         session.setAttribute("number", totalUsage);
         movieService.saveAll(newMovies);
-        var postResponse = new PostResponse();
-        return new ResponseEntity<>(postResponse, HttpStatus.OK);
+
+        return new ResponseEntity<>(newMovies, HttpStatus.OK);
+    }
+
+
+    @PostMapping("/")
+    public ResponseEntity<Movie> makeNewMovie(
+            @ModelAttribute MovieDto newMoviesDto, HttpServletRequest request, HttpServletResponse response
+    ) {
+        var session = request.getSession();
+        var totalUsage = sessionUsage(session);
+
+        if (totalUsage + 1 > 5) throw new ApiErrorException(StatusCodes.F001);
+
+        var newMovie = Movie.builder()
+                .title(newMoviesDto.getTitle())
+                .rank(newMoviesDto.getRank())
+                .isFixed(false)
+                .ownerSession(session.getId())
+                .build();
+
+
+        session.setAttribute("number", totalUsage + 1);
+        movieService.save(newMovie);
+
+        return new ResponseEntity<>(newMovie, HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<Movie> updateMovie(
-            @RequestBody MovieDto newMovie, HttpServletRequest request, HttpServletResponse response
+            @ModelAttribute MovieDto newMovie, HttpServletRequest request, HttpServletResponse response
     ) {
         var session = request.getSession();
 

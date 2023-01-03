@@ -14,6 +14,9 @@ public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
     @Query(value = "{'ownerSession': ?0}", delete = true)
     void deleteAllbyOwnerSession(String sessionId);
 
+    @Query(value = "{'isFixed': false}", delete = true)
+    void deleteAllSession();
+
     @Query(value = "{'ownerSession': ?0, 'title': ?1}", delete = true)
     void deletebyOwnerSessionAndTitle(String sessionId, String title);
 

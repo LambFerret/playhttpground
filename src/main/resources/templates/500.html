@@ -6,6 +6,9 @@
 </head>
 <body>
     <h1>CRITICAL ERROR OCCURED</h1>
-    <h3 th:text="${exception.getMessage()}"></h3>
+    <div th:utext="${exception.getMessage()}"></div>
+        <th:block th:each="stack : ${exception.getStackTrace()}">
+            <li th:text="${stack}"></li>
+        </th:block>
 </body>
 </html>

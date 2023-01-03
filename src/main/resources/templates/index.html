@@ -1,19 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta content="text/html" charset="UTF-8" />
+    <meta content="text/html" charset="UTF-8"/>
 </head>
 <body>
     <h1>쿠키-세션 방식을 사용함</h1>
-<button onclick="location.href='/session/destroy'">세션 초기화</button>
+    <button onclick="location.href='/session/destroy'">세션 초기화</button>
+    <br><br>
+    <button onclick="location.href='/session/destroy/all'"> 생성된 세션 전부 삭제</button>
+    <br><br>
 
-
-<form method="post">
-
-
-
-<button onclick="location.href='/rest/movie'"> 랜덤 생성 </button>
-
-</form>
+    <form method="post" action="/rest/movie/" >
+        <input type="text" name="title"><br>
+        <input type="text" name="rank"><br>
+        <input type="submit" value="클릭">
+    </form>
+<!--    <button onclick="location.href='/random/post'"> 랜덤 생성</button>-->
 </body>
 </html>
