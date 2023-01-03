@@ -30,24 +30,10 @@ public class MovieRestController {
     ) {
         var session = request.getSession();
 
-        var movies = movieService.findUserMovies("test");
+        var movies = movieService.findUserMovies(session.getId());
 
 
         return new ResponseEntity<>(movies, HttpStatus.OK);
-    }
-
-    @GetMapping("/test")
-    public ResponseEntity<List<Movie>> test(
-            HttpServletRequest request, HttpServletResponse response
-    ) {
-
-
-        var session = request.getSession();
-        if (Integer.parseInt(session.getAttribute("number").toString()) > 5) {
-            throw new ApiErrorException(StatusCodes.F001);
-        }
-        throw new ApiErrorException(StatusCodes.F002);
-//        return new ResponseEntity<>(session, HttpStatus.OK);
     }
 
     private int sessionUsage(HttpSession request) {

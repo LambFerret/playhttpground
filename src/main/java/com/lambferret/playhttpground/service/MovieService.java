@@ -17,7 +17,7 @@ public class MovieService {
     }
 
     public List<Movie> findUserMovies(String sessionId) {
-        return movieRepository.findAllbyOwnerSession(sessionId);
+        return movieRepository.findAllAndOwnerSession(sessionId);
     }
 
     public void deleteSessionMovies(String sessionId) {

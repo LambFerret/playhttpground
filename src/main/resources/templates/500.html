@@ -7,8 +7,8 @@
 <body>
     <h1>CRITICAL ERROR OCCURED</h1>
     <div th:utext="${exception.getMessage()}"></div>
-        <th:block th:each="stack : ${exception.getStackTrace()}">
-            <li th:text="${stack}"></li>
-        </th:block>
+<!--        <th:block th:each="stack : ${exception.getStackTrace()}">-->
+<!--            <li th:text="${stack}"></li>-->
+<!--        </th:block>-->
 </body>
 </html>

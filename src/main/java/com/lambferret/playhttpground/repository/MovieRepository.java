@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
-    @Query("{'ownerSession': ?0}")
-    List<Movie> findAllbyOwnerSession(String sessionId);
+    @Query("{ $or: [{'ownerSession': ?0},{'isFixed':true}] }")
+    List<Movie> findAllAndOwnerSession(String sessionId);
 
     @Query(value = "{'ownerSession': ?0}", delete = true)
     void deleteAllbyOwnerSession(String sessionId);
